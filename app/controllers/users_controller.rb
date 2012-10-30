@@ -5,9 +5,10 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(params[:user])
   	if @user.save
+      sign_in @user
+      flash[:success] = "Welcome to the Focus App!"
   		redirect_to @user
   	else
-  		flash[:success] = "Welcome to the Focus App!"
   		render 'new'
   	end
   end
