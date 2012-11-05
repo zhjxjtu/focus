@@ -1,20 +1,12 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
 
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages' %>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
-
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-    <% end %>
-  </div>
+<div class="span4 offset4">
+  <%= form_for(@user) do |f| %>
+    <label>New to Focus? Sign up</label><br>
+    <%= render 'shared/error_messages' %>
+    <%= f.text_field :email, placeholder: "Email" %>
+    <%= f.password_field :password, placeholder: "Password" %>
+    <%= f.password_field :password_confirmation, placeholder: "Re-type password" %>
+    <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+  <% end %>
 </div>
