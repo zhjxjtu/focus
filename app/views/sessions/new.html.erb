@@ -1,13 +1,7 @@
-<div class="row">
-  <div class="span3 offset7">
-    <%= form_for(:session, url: sessions_path) do |f| %>
-      <%= f.text_field :email, placeholder: "Email" %>
-      <%= f.password_field :password, placeholder: "Password" %>
-      <label class="checkbox"><%= f.check_box :remember_me %> Remember me</label>
-      <br>
-      <%= f.submit "Sign in", class: "btn btn-primary pull-right" %>
-    <% end %>
-    <br><br>
-    <p class="pull-right">New user? <%= link_to "Sign up now!", signup_path %></p>
-  </div>
+<% provide(:title, 'Sign in') %>
+
+<div class="span3 offset7">
+  <%= render 'signin_form' %>
+  <br><br>
+  <p class="pull-right">New user? <%= link_to "Sign up now!", signup_path %></p>
 </div>

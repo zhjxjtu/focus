@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
   	if @user.save
-      sign_in(@user,"0")
+      sign_in(@user, params[:page_params][:remember_me])
       flash[:success] = "Welcome to the Focus App!"
   		redirect_to @user
   	else
@@ -18,12 +18,14 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "profile updated"
-      #sign_in @user /do not know why sign_in is needed here
+      sign_in(@user,"1")
       redirect_to @user
     else
       render 'edit'

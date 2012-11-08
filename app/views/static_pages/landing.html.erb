@@ -1,24 +1,10 @@
 <% provide(:title, 'Focus | Home') %>
 
 <div class="span3 offset7">
-  <%= form_for :session, url: sessions_path do |f| %>
-    <label><h3>Please sign in</h3></label>
-    <br>
-    <%= f.text_field :email, placeholder: "Email" %>
-    <%= f.password_field :password, class: "input_small", placeholder: "Password" %>
-    <label class="checkbox"><%= f.check_box :remember_me %> Remember me</label>
-    <%= f.submit "Sign in", class: "btn btn-primary signin-btn" %>
-  <% end %>
+  <%= render 'sessions/signin_form' %>
   <br><br>
 </div>
 
 <div class="span3 offset7">
-  <form accept-charset="UTF-8" action="/users" class="new_user" id="new_user" method="post">
-    <label><h3>New to Focus? Sign up</h3></label>
-    <br>
-    <input id="user_email" name="user[email]" size="30" type="text" placeholder="Email" />
-    <input id="user_password" name="user[password]" size="30" type="password" placeholder="Password" />
-    <input id="user_password_confirmation" name="user[password_confirmation]" size="30" type="password" placeholder="Re-type password" />
-    <input class="btn btn-warning signup-btn" name="commit" type="submit" value="Create my account" />
-  </form> 
+  <%= render 'users/signup_form' %>
 </div>

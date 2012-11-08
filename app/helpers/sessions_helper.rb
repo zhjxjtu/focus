@@ -1,6 +1,6 @@
 module SessionsHelper
 	def sign_in(user, remember_me)
-		if remember_me == "1"
+		if remember_me == "yes"
 			cookies.permanent[:remember_token] = user.remember_token
 		else
 			cookies[:remember_token] = user.remember_token
@@ -35,6 +35,6 @@ module SessionsHelper
 	end
 
 	def store_location
-		session[return_to] = request.url
+		session[:return_to] = request.url
 	end
 end

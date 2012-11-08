@@ -1,0 +1,10 @@
+<%= form_for @user, url: '/users' do |f| %>
+  <label><h3>New to Focus? Sign up</h3></label>
+  <br>
+  <%= render 'shared/error_messages' %>
+  <%= f.text_field :email, placeholder: "Email" %>
+  <%= f.password_field :password, placeholder: "Password" %>
+  <%= f.password_field :password_confirmation, placeholder: "Re-type password" %>
+  <label class="checkbox"><%= check_box("page_params", "remember_me", { checked: true }, "yes", "no") %> Remember me</label>
+  <%= f.submit "Create my account", class: "btn btn-warning signup-btn" %>
+<% end %>
