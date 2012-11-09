@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:edit, :update]
+  before_filter :signed_in_user, only: [:index, :show, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
+  before_filter :verified_user, only: [:index, :show, :edit, :update]
+  before_filter :unverfied_user, only: [:verify_page, :verify_update]
 
   def new
   	@user = User.new
@@ -32,6 +34,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def verify_page
+  end
+
+  def verify_update
+    @user = User.find(params[:id])
+    if @user.user_status != "new"
+      flash[:success] = "You account has been verified"
+      redirect_to @user
+    elsif @user.verify_code == params[:verify_code]
+      if set_user_status(@user, "normal")
+        flash[:success] = "You account has been verified"
+        sign_in(@user,"yes")
+        redirect_to @user
+      else
+        flash[:success] = "User verification failed"
+        redirect_to verify_path
+      end
+    else
+      flash[:success] = "The verification link is not correct or expired"
+      redirect_to root_path
+    end
+  end
+
   private
 
   def signed_in_user
@@ -45,4 +70,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     redirect_to root_path unless current_user?(@user)
   end 
+
+  def verified_user
+    unless verified?
+      redirect_to verify_url
+    end
+  end
+
+  def unverfied_user
+    unless !verified?
+      redirect_to root_path
+    end
+  end
+
+  def set_user_status(user, status)
+    user.update_attribute(:user_status, status)
+  end
 end

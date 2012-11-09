@@ -8,6 +8,6 @@ class StaticPagesController < ApplicationController
   private
 
   def unsigned_in_user
-      redirect_back_or(current_user) unless current_user.nil?
+      redirect_to current_user unless current_user.nil?
   end
 end

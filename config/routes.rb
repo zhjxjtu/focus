@@ -3,8 +3,11 @@ Focus::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   root to: 'static_pages#landing'
   match '/signup',  to: 'users#new'
+  match '/verify',  to: 'users#verify_page'
+  match '/verify_user',  to: 'users#verify_update', via: :put
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

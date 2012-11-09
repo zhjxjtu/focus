@@ -1,0 +1,2 @@
+<h1>please verify your page</h1>
+<%= link_to "Verify", {controller: "users", action: "verify_update", id: current_user.id, verify_code: current_user.verify_code}, method: "put" %>
