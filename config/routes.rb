@@ -4,7 +4,7 @@ Focus::Application.routes.draw do
   root to: 'static_pages#landing'
   match '/signup',  to: 'users#new'
   match '/verify',  to: 'users#verify_page'
-  match '/verify_user',  to: 'users#verify_update', via: :put
+  match '/user_verification',  to: 'users#verify'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 

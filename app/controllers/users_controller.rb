@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       sign_in(@user, params[:page_params][:remember_me])
       flash[:success] = "Welcome to the Focus App!"
   		redirect_to @user
+      Thread.new{UserEmails.verify(@user).deliver}
   	else
   		render 'new'
   	end
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "profile updated"
-      sign_in(@user,"1")
+      sign_in(@user,"yes")
       redirect_to @user
     else
       render 'edit'
@@ -37,19 +38,19 @@ class UsersController < ApplicationController
   def verify_page
   end
 
-  def verify_update
+  def verify
     @user = User.find(params[:id])
     if @user.user_status != "new"
       flash[:success] = "You account has been verified"
       redirect_to @user
     elsif @user.verify_code == params[:verify_code]
       if set_user_status(@user, "normal")
-        flash[:success] = "You account has been verified"
+        flash[:success] = "Congratulations! You account is verified now."
         sign_in(@user,"yes")
         redirect_to @user
       else
         flash[:success] = "User verification failed"
-        redirect_to verify_path
+        redirect_to verify_url
       end
     else
       flash[:success] = "The verification link is not correct or expired"
