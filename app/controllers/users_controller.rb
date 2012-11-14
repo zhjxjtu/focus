@@ -38,6 +38,12 @@ class UsersController < ApplicationController
   def verify_page
   end
 
+  def verify_resend
+    #flash.keep[:notice] = "An email has been sent to #{current_user.email}"
+    redirect_to current_user
+    Thread.new{UserEmails.verify(current_user).deliver}
+  end
+
   def verify
     @user = User.find(params[:id])
     if @user.user_status != "new"
@@ -49,11 +55,11 @@ class UsersController < ApplicationController
         sign_in(@user,"yes")
         redirect_to @user
       else
-        flash[:success] = "User verification failed"
+        flash[:notice] = "User verification failed"
         redirect_to verify_url
       end
     else
-      flash[:success] = "The verification link is not correct or expired"
+      flash[:notice] = "The verification link is not correct or expired"
       redirect_to root_path
     end
   end

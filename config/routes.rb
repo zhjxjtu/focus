@@ -7,6 +7,7 @@ Focus::Application.routes.draw do
   match '/user_verification',  to: 'users#verify'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+  match '/verify_resend', to: 'users#verify_resend'
 
 
   # The priority is based upon order of creation:

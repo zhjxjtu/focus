@@ -1,10 +1,7 @@
 <%= form_for(@user), url: '/users' do |f| %>
   <%= render 'shared/error_messages' %>
-  <%= f.label :email %>
   <%= f.text_field :email, placeholder: "Email" %>
-  <%= f.label :password %>
   <%= f.password_field :password, placeholder: "Password" %>
-  <%= f.label :password_confirmation, "Confirm Password" %>
   <%= f.password_field :password_confirmation, placeholder: "Re-type password" %>
   <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
 <% end %>
