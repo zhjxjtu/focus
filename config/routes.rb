@@ -1,13 +1,11 @@
 Focus::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :verify_users, only: [:index, :edit, :show]
   root to: 'static_pages#landing'
   match '/signup',  to: 'users#new'
-  match '/verify',  to: 'users#verify_page'
-  match '/user_verification',  to: 'users#verify'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
-  match '/verify_resend', to: 'users#verify_resend'
 
 
   # The priority is based upon order of creation:

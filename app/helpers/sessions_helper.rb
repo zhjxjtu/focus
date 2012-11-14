@@ -24,10 +24,6 @@ module SessionsHelper
 		user == current_user
 	end
 
-	def verified?
-		current_user.user_status == "normal"
-	end
-
 	def sign_out
 		self.current_user = nil
 		cookies.delete(:remember_token)
