@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   before_filter :verified_user, only: [:index, :show, :edit, :update]
   before_filter :correct_user, only: [:edit, :update]
 
+  def index
+    @users = User.all
+  end
+
   def new
   	@user = User.new
   end

@@ -1,6 +1,5 @@
 <%= form_for @user, url: '/users' do |f| %>
-  <label><h3>New to Focus? Sign up</h3></label>
-  <br>
+  <label><h4>New to Focus? Sign up</h4></label>
   <%= render 'shared/error_messages' %>
   <%= f.text_field :email, placeholder: "Email" %>
   <%= f.password_field :password, placeholder: "Password" %>

@@ -1,5 +1,5 @@
 class VerifyUsersController < ApplicationController
-  	before_filter :unverfied_user, only: [:verify_page]
+  	before_filter :unverfied_user, only: [:show]
 
 	def index
 	  @user = User.find(params[:id])
