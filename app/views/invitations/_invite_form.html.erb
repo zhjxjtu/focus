@@ -1,4 +1,4 @@
 <%= form_for @invitation, url: '/invitations' do |f| %>
-  <%= f.text_field :invitee, placeholder: "Input email to invite" %>
-  <%= f.submit "Invite", class: "btn btn-primary" %>
+  <%= f.text_field :invitee, class:"input-medium search-query", placeholder: "Input email to invite" %>
+  <%= f.submit "Invite new friend", class: "btn btn-primary" %>
 <% end %>

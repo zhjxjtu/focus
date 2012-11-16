@@ -1,0 +1,12 @@
+<table class="table table-bordered">
+  <tr>
+  	<td><strong>Email</strong></td>
+  	<td><strong>Time</strong></td>
+  </tr>
+  <% @invitations.each do |invitation| %>
+    <tr>
+      <td><%= invitation.invitee %></td>
+      <td><%= invitation.created_at %></td>
+    </tr>
+  <% end %>
+</table>
