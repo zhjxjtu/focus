@@ -2,6 +2,8 @@ Focus::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :verify_users, only: [:index, :edit, :show]
+  resources :invitations, only: [:show, :new, :create, :destroy]
+
   root to: 'static_pages#landing'
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

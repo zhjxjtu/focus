@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+	before_filter :unsigned_in_user, only: [:new]
+	
 	def new
 	end
 	
@@ -6,7 +8,7 @@ class SessionsController < ApplicationController
 		user = User.find_by_email(params[:session][:email].downcase)
 		if user && user.authenticate(params[:session][:password])
 			sign_in(user, params[:session][:remember_me])
-			redirect_back_or(user)
+			redirect_to users_path
 		else
 			flash[:error] = 'Invalid email or password'
 			render 'new'
