@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :name, :phone_number, :description
   has_secure_password
   has_many :invitations, dependent: :destroy
+  has_many :contacts, foreign_key: "inviter", dependent: :destroy
+  has_many :invitees, through: :contacts, source: :invitee
+  has_many :reverse_contacts, foreign_key: "inviter", class_name: "Contacts", dependent: :destroy
+  has_many :inviters, through: :reverse_contacts, source: :inviter
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token

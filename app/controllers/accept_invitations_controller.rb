@@ -12,11 +12,14 @@ class AcceptInvitationsController < ApplicationController
       	sign_in(@user, params[:page_params][:remember_me])
       	flash[:success] = "Welcome to the Focus App! Your contact information has been sent back to #{User.find_by_id(@invitation.inviter).name}"
         UserEmails.verify(@user).deliver
-        @user = User.find_by_email(@invitation.invitee)
-  		redirect_to @user
+        @inviter = User.find(@invitation.inviter)
+        @invitee = User.find_by_email(@invitation.invitee)
+        @contact = Contact.new(inviter: @inviter.id, invitee:@invitee.id)
+        @contact.save
+  		  redirect_to @invitee
       else
       	flash[:success] = "The invitation does not exist"
-  		redirect_to root_path
+  		  redirect_to root_path
   	  end
   	else
   		render 'new'
