@@ -1,0 +1,14 @@
+<p>Hi <%= @invitee %>,</p>
+<br>
+<p>This is <%= @inviter.name %>, <%= @inviter.description %>. I was very glad to meet you today. </p>
+<p>Please feel free to contact me through:</p>
+<p>Email: <%= @inviter.email %></p>
+<p>Phone: <%= @inviter.phone_number %></p>
+<br>
+<p>Could you please also let me know your contact information through Focus Porject? Thanks!</p>
+<br>
+<p>http://localhost:3000/accept_invitations/new?inviter=<%= "#{@inviter.id}" %>&invitee=<%= "#{@invitee}" %></p>
+<p>Let's keep in touch!</p>
+
+<p>Best,</p>
+<p><%= @inviter.name %></p>

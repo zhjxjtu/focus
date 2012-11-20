@@ -2,13 +2,13 @@ Focus::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :verify_users, only: [:index, :edit, :show]
-  resources :invitations, only: [:show, :new, :create, :destroy]
+  resources :invitations, only: [:show, :create]
+  resources :accept_invitations, only: [:new, :create]
 
   root to: 'static_pages#landing'
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

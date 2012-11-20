@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       sign_in(@user, params[:page_params][:remember_me])
       flash[:success] = "Welcome to the Focus App!"
   		redirect_to @user
-      Thread.new{UserEmails.verify(@user).deliver}
+      UserEmails.verify(@user).deliver
   	else
   		render 'new'
   	end

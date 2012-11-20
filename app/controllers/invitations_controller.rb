@@ -20,4 +20,5 @@ class InvitationsController < ApplicationController
   	  redirect_to invitation_path
   	end
   end
+
 end

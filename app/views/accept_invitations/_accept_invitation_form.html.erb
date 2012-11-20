@@ -1,0 +1,11 @@
+<%= form_for @user, url: '/accept_invitations' do |f| %>
+  <label><h4>Send your information back to <%= User.find_by_id(@invitation.inviter).name %></h4></label>
+  <%= render 'shared/error_messages' %>
+  <%= f.text_field :email, placeholder: "Email", Value: "#{@invitation.invitee}" %>
+  <%= f.password_field :password, placeholder: "Password" %>
+  <%= f.password_field :password_confirmation, placeholder: "Re-type password" %>
+  <label class="checkbox"><%= check_box("page_params", "remember_me", { checked: true }, "yes", "no") %> Remember me</label>
+  <%= hidden_field(:invitation, :inviter) %>
+  <%= hidden_field(:invitation, :invitee) %>
+  <%= f.submit "Create my account", class: "btn btn-warning signup-btn" %>
+<% end %>
