@@ -1,19 +1,19 @@
-<header class="navbar">
+<header class="navbar navbar-fixed-top navbar-inverse">
   	<div class="navbar-inner">
-  	  <%= link_to "Focus(Alpha)", root_path, class: "brand", id: "logo" %>
-	  <nav>
-    	<ul class="nav pull-right">
-    	  <% if signed_in? %>
-    	    <li>
+  	  <div class="container">
+  	  <%= link_to "Focus(Beta)", root_path, class: "brand", id: "logo" %>
+	    <nav>
+    	  <ul class="nav pull-right">
+    	    <% if signed_in? %>
     	      <li><%= link_to "Contacts", users_path %></li>
     	      <li><%= link_to "Invite", invitation_path(current_user) %></li>
     	      <li><%= link_to current_user.email, edit_user_path(current_user) %></li>
 	  	      <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
-	  	    </li>
-	  	  <% else %>
-	  	    
-	  	  <% end %>
-	    </ul>
-	  </nav>
+	  	    <% else %>
+	  	      <li><%= link_to "What is Focus?", '#' %></li>
+	  	    <% end %>
+	      </ul>
+	    </nav>
+	  </div>
 	</div>
 </header>
