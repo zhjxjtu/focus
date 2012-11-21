@@ -1,14 +1,14 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   	<div class="navbar-inner">
   	  <div class="container">
-  	  <%= link_to "Focus(Beta)", root_path, class: "brand", id: "logo" %>
+  	  <%= link_to "Focus(Beta)", root_path, class: "brand", id: "logo", tabindex: "-1" %>
 	    <nav>
     	  <ul class="nav pull-right">
     	    <% if signed_in? %>
-    	      <li><%= link_to "Contacts", users_path %></li>
-    	      <li><%= link_to "Add Contacts", invitation_path(current_user) %></li>
+    	      <li><%= link_to "Contacts", users_path, tabindex: "-1" %></li>
+    	      <li><%= link_to "Add Contacts", invitation_path(current_user), tabindex: "-1" %></li>
     	      <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown", tabindex= "-1">
                   <%= current_user.email %> 
                   <b class="caret"></b>
                 </a>
@@ -19,7 +19,7 @@
                 </ul>
               </li>
 	  	    <% else %>
-	  	      <li><%= link_to "What is Focus?", '#' %></li>
+	  	      <li><%= link_to "What is Focus?", '#', tabindex: "-1" %></li>
 	  	    <% end %>
 	      </ul>
 	    </nav>

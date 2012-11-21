@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :show, :edit, :update]
-  before_filter :verified_user, only: [:index, :show, :edit, :update]
+  #before_filter :verified_user, only: [:index, :show, :edit, :update]  //for verify_user
   before_filter :correct_user, only: [:edit, :update]
 
   def index
@@ -16,10 +16,11 @@ class UsersController < ApplicationController
   	if @user.save
       sign_in(@user, params[:page_params][:remember_me])
       flash[:success] = "Welcome to the Focus App!"
-  		redirect_to @user
-      UserEmails.verify(@user).deliver
+  		redirect_to root_path
+      #UserEmails.verify(@user).deliver  //for verify_user
   	else
-  		render 'new'
+  		flash[:error] = @user.errors.full_messages[0]
+      redirect_to signup_path
   	end
   end
 
