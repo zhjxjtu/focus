@@ -31,11 +31,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:success] = "profile updated"
+      flash[:success] = "Profile updated"
       sign_in(@user,"yes")
       redirect_to @user
     else
-      render 'edit'
+      redirect_to edit_user_path
+      flash[:error] = @user.errors.full_messages[0]
     end
   end
   

@@ -1,7 +1,9 @@
 <% provide(:title, 'Sign in') %>
 
-<div class="span4 offset4">
+<div class="span3 offset4">
   <%= render 'signin_form' %>
-  <br><br>
+  <br>
+  <%= render 'layouts/error_message' %>
+  <br>
   <p>New user? <%= link_to "Sign up now!", signup_path %></p>
 </div>
