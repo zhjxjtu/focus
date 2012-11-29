@@ -5,23 +5,25 @@
   	<td><strong>Phone Number</strong></td>
   	<td><strong>Description</strong></td>
   </tr>
-  <% unless @invitees == nil %>
-    <% @invitees.each do |invitee| %>
+  <% if @invitees.any? %>
+    <% @invitees.each do |contact| %>
+      <% @contact = User.find_by_id(contact.invitee) %>
       <tr>
-        <td><%= invitee.name %></td>
-        <td><%= invitee.email %></td>
-        <td><%= invitee.phone_number %></td>
-        <td><%= invitee.description %></td>
+        <td><%= @contact.name %></td>
+        <td><%= @contact.email %></td>
+        <td><%= @contact.phone_number %></td>
+        <td><%= @contact.description %></td>
       </tr>
     <% end %>
   <% end %>
-  <% unless @invitees == nil %>
-    <% @inviters.each do |inviter| %>
+  <% if @inviters.any? %>
+    <% @inviters.each do |contact| %>
+      <% @contact = User.find_by_id(contact.inviter) %>
       <tr>
-        <td><%= inviter.name %></td>
-        <td><%= inviter.email %></td>
-        <td><%= inviter.phone_number %></td>
-        <td><%= inviter.description %></td>
+        <td><%= @contact.name %></td>
+        <td><%= @contact.email %></td>
+        <td><%= @contact.phone_number %></td>
+        <td><%= @contact.description %></td>
       </tr>
   <% end %>
   <% end %>

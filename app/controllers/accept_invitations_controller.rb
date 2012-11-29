@@ -16,7 +16,7 @@ class AcceptInvitationsController < ApplicationController
         @invitee = User.find_by_email(@invitation.invitee)
         @contact = Contact.new(inviter: @inviter.id, invitee:@invitee.id)
         @contact.save
-  		  redirect_to @invitee
+  		  redirect_to root_path
       else
       	flash[:success] = "The invitation does not exist"
   		  redirect_to root_path

@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
   def show
-	@invitees = Contact.find_by_inviter(current_user.id)
-	@inviters = Contact.find_by_invitee(current_user.id)
+	@invitees = Contact.all(conditions: "inviter = #{current_user.id}")
+	@inviters = Contact.all(conditions: "invitee = #{current_user.id}")
+	@contact = User.new
   end
 end

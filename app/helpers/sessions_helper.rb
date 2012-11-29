@@ -20,7 +20,7 @@ module SessionsHelper
   	end
 
   	def unsigned_in_user
-    	redirect_to users_path unless current_user.nil?
+    	redirect_to contact_path(current_user) unless current_user.nil?
   	end
 
 	def current_user=(user)
