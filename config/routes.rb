@@ -1,7 +1,7 @@
 Focus::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :verify_users, only: [:index, :edit, :show]
+  #resources :verify_users, only: [:index, :edit, :show]
   resources :invitations, only: [:show, :create]
   resources :accept_invitations, only: [:new, :create]
   resources :contacts, only: [:show]

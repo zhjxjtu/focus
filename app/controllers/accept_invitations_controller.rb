@@ -11,7 +11,7 @@ class AcceptInvitationsController < ApplicationController
   	  if Invitation.find_by_inviter_and_invitee(@invitation.inviter, @invitation.invitee).destroy
       	sign_in(@user, params[:page_params][:remember_me])
       	flash[:success] = "Welcome to the Focus App! Your contact information has been sent back to #{User.find_by_id(@invitation.inviter).name}"
-        UserEmails.verify(@user).deliver
+        #UserEmails.verify(@user).deliver
         @inviter = User.find(@invitation.inviter)
         @invitee = User.find_by_email(@invitation.invitee)
         @contact = Contact.new(inviter: @inviter.id, invitee:@invitee.id)
